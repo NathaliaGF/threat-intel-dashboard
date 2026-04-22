@@ -61,7 +61,7 @@
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
           </svg>
           <input type="text" id="query-input" spellcheck="false"
-                 placeholder="8.8.8.8  ·  example.com  ·  44d88612fea8a8f36de82e1278abb02f">
+                 placeholder="8.8.8.8  ·  https://example.com/login  ·  44d88612fea8a8f36de82e1278abb02f">
           <span id="type-badge" class="type-badge" aria-live="polite"></span>
         </div>
         <button type="submit" id="search-btn" class="btn-primary">Analyze</button>
@@ -88,17 +88,48 @@
     <button id="banner-settings-btn" class="banner-link">Add keys →</button>
   </div>
 
-  <!-- Results -->
-  <section id="results" class="hidden">
-    <div class="results-header">
-      <div class="results-title-row">
-        <code id="results-query"></code>
-        <span id="results-type-badge" class="type-badge"></span>
+  <div class="workspace">
+    <aside class="history-panel" aria-label="Recent lookups">
+      <div class="panel-header">
+        <h2>Recent lookups</h2>
+        <button id="clear-history-btn" class="mini-btn" type="button">Clear</button>
       </div>
-      <div id="verdict-badge" class="verdict-badge"></div>
+      <div id="history-list" class="history-list"></div>
+    </aside>
+
+    <div class="content-panel">
+      <!-- Results -->
+      <section id="results" class="hidden">
+        <div class="results-header">
+          <div class="results-title-row">
+            <code id="results-query"></code>
+            <span id="results-type-badge" class="type-badge"></span>
+          </div>
+          <div class="results-actions">
+            <button id="export-json-btn" class="btn-ghost" type="button">Export JSON</button>
+            <button id="export-md-btn" class="btn-ghost" type="button">Export Markdown</button>
+            <button id="print-report-btn" class="btn-ghost" type="button">Print PDF</button>
+            <div id="verdict-badge" class="verdict-badge"></div>
+          </div>
+        </div>
+
+        <section class="osint-panel" aria-label="External OSINT sources">
+          <div class="panel-header">
+            <h2>OSINT pivots</h2>
+            <span>No-key linkouts</span>
+          </div>
+          <div id="osint-links" class="osint-links"></div>
+        </section>
+
+        <div id="cards" class="cards-grid"></div>
+      </section>
+
+      <div id="empty-state" class="empty-state">
+        <h2>Start with an IOC</h2>
+        <p>Search an IP, domain, URL or hash to build a browser-side evidence report.</p>
+      </div>
     </div>
-    <div id="cards" class="cards-grid"></div>
-  </section>
+  </div>
 </main>
 
 <!-- ── Settings Modal ─────────────────────────────────── -->
@@ -173,6 +204,6 @@
 </footer>
 
 <div id="toast" role="status" aria-live="polite"></div>
-<script src="js/app.js"></script>
+<script type="module" src="js/app.js"></script>
 </body>
 </html>

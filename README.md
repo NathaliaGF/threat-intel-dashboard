@@ -1,16 +1,21 @@
 # Threat Intelligence Dashboard
 
-Static threat intelligence dashboard for IP, domain and hash lookups using public security APIs directly from the browser.
+Static threat intelligence dashboard for IP, IPv6, domain, URL and hash lookups using public security APIs directly from the browser.
+
+![Threat Intelligence Dashboard preview](docs/screenshot.svg)
 
 ## Features
 
-- Detects IPs, domains, MD5, SHA-1 and SHA-256 hashes.
-- VirusTotal lookup for IPs, domains and file hashes.
+- Detects IPv4, IPv6, domains, URLs, MD5, SHA-1 and SHA-256 hashes.
+- VirusTotal lookup for IPs, domains, URLs and file hashes.
 - AbuseIPDB lookup for IP abuse confidence.
 - Shodan lookup for indexed IP services and open ports.
 - IPinfo geolocation lookup for IPs without requiring an API key.
+- Local lookup history with verdict, type and timestamp.
+- Export the current investigation as JSON, Markdown or print-to-PDF.
+- No-key OSINT pivots for URLhaus, AlienVault OTX, GreyNoise, Censys and future MISP/OpenCTI investigation.
 - API keys are stored only in browser `localStorage`.
-- Works as a static site on GitHub Pages.
+- Works as a static site on GitHub Pages with a ready-to-use Actions workflow.
 
 ## Run locally
 
@@ -20,13 +25,20 @@ python3 -m http.server 8080
 
 Open `http://localhost:8080`.
 
+## Tests
+
+```bash
+npm test
+```
+
 ## GitHub Pages
 
-1. Push this folder to a GitHub repository.
+The repository includes `.github/workflows/pages.yml`.
+
+1. Push the `main` branch to GitHub.
 2. In the repository, go to `Settings > Pages`.
-3. Set source to `Deploy from a branch`.
-4. Select branch `main` and folder `/root`.
-5. Save and wait for GitHub to publish the site.
+3. Set source to `GitHub Actions`.
+4. Pushes to `main` will run tests and publish the static site.
 
 ## API keys
 
